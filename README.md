@@ -4,7 +4,7 @@ RoBot Burbea is a Hermes profile distribution for a long-running meditation coac
 
 It is designed as a first Hermes experience: install Hermes Desktop, install this profile, then begin with a local-first coach that can help you practice, study, reflect, and gradually shape a path over time.
 
-## Install
+## Install and Run
 
 After Hermes is installed and configured:
 
@@ -12,10 +12,35 @@ After Hermes is installed and configured:
 hermes profile install github.com/kubla/hermes-ro-bot-burbea --alias
 ```
 
-Then open Hermes Desktop and select the `ro-bot-burbea` profile, or use:
+### Hermes Desktop
+
+The most reliable Desktop path is:
+
+```bash
+hermes profile use ro-bot-burbea
+hermes desktop
+```
+
+`hermes profile use ro-bot-burbea` makes this profile the sticky active profile. When Desktop opens, start a new chat and send:
+
+```text
+Use the first-run-setup skill.
+```
+
+You can also switch inside Desktop: open **Profiles**, confirm `ro-bot-burbea` is listed, then choose `ro-bot-burbea` from the profile switcher/profile rail before starting a new chat. Desktop's profile switcher changes the active profile context for new chats and opens that profile's backend as needed.
+
+### CLI Fallback
+
+If you created the alias during install:
 
 ```bash
 ro-bot-burbea chat
+```
+
+Without the alias:
+
+```bash
+hermes -p ro-bot-burbea chat
 ```
 
 ## First Run
