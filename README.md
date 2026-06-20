@@ -69,7 +69,13 @@ See [docs/coaching-contract.md](docs/coaching-contract.md) for the working contr
 Run tests:
 
 ```bash
-python3 -m unittest discover -s tests -v
+/usr/bin/python3 -m unittest discover -s tests -v
+```
+
+Run the full local Hermes runtime interaction acceptance test with a fake OpenAI-compatible loopback provider:
+
+```bash
+RUN_HERMES_RUNTIME_ACCEPTANCE=1 /usr/bin/python3 -m unittest tests.test_acceptance_hermes_profile.HermesRuntimeInteractionAcceptanceTests -v
 ```
 
 See [SPEC.md](SPEC.md) for the implementation spec.

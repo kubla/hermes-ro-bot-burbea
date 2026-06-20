@@ -285,6 +285,8 @@ Before v0.1.0 is treated as publishable:
 - `python3 -m unittest discover -s tests -v` passes.
 - `python3 scripts/build_garden_index.py --garden <fixture> --output <tmp-db>` builds an index.
 - `python3 scripts/log_practice_checkin.py --log <tmp-jsonl> ...` appends valid JSONL.
+- `/usr/bin/python3 -m unittest discover -s tests -v` runs local unit and Hermes install acceptance tests.
+- `RUN_HERMES_RUNTIME_ACCEPTANCE=1 /usr/bin/python3 -m unittest tests.test_acceptance_hermes_profile.HermesRuntimeInteractionAcceptanceTests -v` runs the local fake-provider Hermes chat interaction test.
 - `distribution.yaml` parses as YAML if PyYAML is available, or passes a conservative standard-library structural check.
 - Required profile files exist.
 - Required skills have `SKILL.md` files.
