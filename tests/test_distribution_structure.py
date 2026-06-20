@@ -66,9 +66,16 @@ class DistributionStructureTests(unittest.TestCase):
     def test_distribution_manifest_is_provider_silent_and_public_ready(self):
         text = (REPO_ROOT / "distribution.yaml").read_text()
         self.assertIn("name: ro-bot-burbea", text)
+        self.assertIn("logo: logo.png", text)
+        self.assertIn("  - logo.png", text)
         self.assertIn("env_requires: []", text)
         self.assertNotRegex(text, re.compile(r"(OPENAI|ANTHROPIC|HONCHO)_API_KEY"))
         self.assertIn("distribution_owned:", text)
+
+    def test_readme_displays_committed_logo_for_github_landing_page(self):
+        readme = (REPO_ROOT / "README.md").read_text()
+        self.assertIn("![RoBot Burbea logo](logo.png)", readme)
+        self.assertTrue((REPO_ROOT / "logo.png").is_file())
 
     def test_runtime_paths_are_ignored(self):
         ignore = (REPO_ROOT / ".gitignore").read_text()

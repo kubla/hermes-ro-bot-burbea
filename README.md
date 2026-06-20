@@ -1,5 +1,7 @@
 # RoBot Burbea
 
+![RoBot Burbea logo](logo.png)
+
 RoBot Burbea is a Hermes profile distribution for a long-running meditation coach inspired by Rob Burbea's teachings without impersonating Rob Burbea.
 
 It is designed as a first Hermes experience: install Hermes Desktop, install this profile, then begin with a local-first coach that can help you practice, study, reflect, and gradually shape a path over time.
@@ -82,6 +84,12 @@ See [docs/knowledge-base-rights.md](docs/knowledge-base-rights.md) before redist
 The distribution does not choose a model provider and does not require provider-specific API keys. Configure Hermes itself however you normally would.
 
 Practice logs, curriculum notes, safety notes, and the cloned garden stay local by default.
+
+## Artwork
+
+The profile artwork is [logo.png](logo.png). GitHub renders this image directly in this README, and Hermes installs the file into the profile directory.
+
+`distribution.yaml` also includes `logo: logo.png` as source metadata and marks `logo.png` as distribution-owned. Hermes Agent v0.17.0 installs the image file, but its installed profile metadata and Desktop profile API do not expose a logo/icon field yet, so Desktop will not automatically use this image as the profile icon until Hermes adds support for that metadata.
 
 ## Boundaries
 

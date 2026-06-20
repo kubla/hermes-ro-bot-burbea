@@ -54,6 +54,7 @@ class HermesProfileAcceptanceTests(unittest.TestCase):
         self.assertIn("Installed 'acceptance-ro-bot' v0.1.0", output)
         self.assertIn("Cron jobs were included but are NOT scheduled automatically", output)
         self.assertTrue((profile_path / "distribution.yaml").is_file())
+        self.assertTrue((profile_path / "logo.png").is_file())
         self.assertTrue((profile_path / "SOUL.md").is_file())
         self.assertTrue((profile_path / "skills" / "first-run-setup" / "SKILL.md").is_file())
         self.assertFalse((profile_path / "knowledge" / "rob-burbea-garden").exists())
