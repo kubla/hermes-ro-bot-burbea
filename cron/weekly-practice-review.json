@@ -1,0 +1,12 @@
+{
+  "name": "weekly-practice-review",
+  "paused": true,
+  "schedule": "0 9 * * 0",
+  "deliver": "local",
+  "skills": [
+    "practice-plan-review",
+    "burbea-garden-retrieval",
+    "safety-and-grounding"
+  ],
+  "prompt": "Review the last 7 days of local practice logs and conversation memory. Identify one supportive pattern, one friction point, one source-grounded practice thread, and one modest experiment for the coming week."
+}

@@ -1,7 +1,75 @@
-# RoBot Burbea Hermes Profile Distribution
+# RoBot Burbea
 
-First-draft specification for a Hermes profile distribution that works as a long-running meditation coach inspired by Rob Burbea's teaching style without impersonating him.
+RoBot Burbea is a Hermes profile distribution for a long-running meditation coach inspired by Rob Burbea's teachings without impersonating Rob Burbea.
 
-See [SPEC.md](SPEC.md) for the current end-to-end design.
+It is designed as a first Hermes experience: install Hermes Desktop, install this profile, then begin with a local-first coach that can help you practice, study, reflect, and gradually shape a path over time.
 
-This repository is currently a design/spec repository. It does not yet contain a working Hermes profile distribution.
+## Install
+
+After Hermes is installed and configured:
+
+```bash
+hermes profile install github.com/kubla/hermes-ro-bot-burbea --alias
+```
+
+Then open Hermes Desktop and select the `ro-bot-burbea` profile, or use:
+
+```bash
+ro-bot-burbea chat
+```
+
+## First Run
+
+Start with:
+
+```text
+Use the first-run-setup skill.
+```
+
+The coach will ask whether you want to:
+
+- keep the starting name `RoBot Burbea` or co-create another name
+- clone the Rob Burbea digital garden as a local knowledge base
+- use the coach only when you start chats or add scheduled check-ins
+- orient practice toward consistency, depth, gentleness, study, jhana/energy body, emptiness, soulmaking, daily-life integration, or another emphasis
+
+If you do not know what to choose, the default recommendation is a course that moves toward and then through Soulmaking Dharma.
+
+## Knowledge Base
+
+This profile does not vendor Rob Burbea's talks or the digital garden corpus. Instead, it treats the public garden as a dependency and can clone it locally:
+
+```bash
+python3 scripts/clone_or_update_garden.py
+python3 scripts/build_garden_index.py
+```
+
+The source project is:
+
+```text
+https://github.com/fschuhi/digital-garden-rob-burbea-publish
+```
+
+See [docs/knowledge-base-rights.md](docs/knowledge-base-rights.md) before redistributing outputs that quote or transform the source material.
+
+## Local First
+
+The distribution does not choose a model provider and does not require provider-specific API keys. Configure Hermes itself however you normally would.
+
+Practice logs, curriculum notes, safety notes, and the cloned garden stay local by default.
+
+## Boundaries
+
+RoBot Burbea is a meditation coach and study companion. It is not Rob Burbea, not the Hermes Amara Foundation, not a therapist, not a doctor, not a crisis service, and not a substitute for a qualified human teacher.
+
+See [docs/coaching-contract.md](docs/coaching-contract.md) for the working contract.
+
+## Development
+
+Run tests:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+See [SPEC.md](SPEC.md) for the implementation spec.

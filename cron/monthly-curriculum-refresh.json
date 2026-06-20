@@ -1,0 +1,12 @@
+{
+  "name": "monthly-curriculum-refresh",
+  "paused": true,
+  "schedule": "30 8 1 * *",
+  "deliver": "local",
+  "skills": [
+    "practice-plan-review",
+    "burbea-garden-retrieval",
+    "teacherly-style-guardrails"
+  ],
+  "prompt": "Review the last month. Suggest whether to continue, simplify, broaden, or pause any current practice thread. If the user has not chosen a direction, recommend the next step toward and then through Soulmaking Dharma."
+}

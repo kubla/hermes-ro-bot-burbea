@@ -1,0 +1,17 @@
+name: ro-bot-burbea
+version: 0.1.0
+description: "A local-first, source-grounded meditation coach inspired by Rob Burbea's teachings."
+hermes_requires: ">=0.13.0"
+author: "kubla"
+license: "MIT for this profile distribution; Rob Burbea source materials remain governed by their own rights holders."
+env_requires: []
+distribution_owned:
+  - SOUL.md
+  - config.yaml
+  - mcp.json
+  - skills/
+  - scripts/
+  - cron/
+  - docs/
+  - knowledge/README.md
+  - knowledge/manifests/

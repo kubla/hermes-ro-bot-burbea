@@ -1,70 +1,58 @@
-# RoBot Burbea Hermes Profile Distribution: First Draft Spec
+# RoBot Burbea Hermes Profile Distribution Spec
 
-Status: first complete draft for review
+Status: final implementation spec for v0.1.0
 Date: 2026-06-20
-Working name: `ro-bot-burbea`
-Primary purpose: a long-running meditation coach that can support one practitioner over days, months, and years while staying grounded in Rob Burbea's published teaching corpus without impersonating Rob Burbea.
+Repository: `kubla/hermes-ro-bot-burbea`
+Profile name: `ro-bot-burbea`
+Starting coach name: `RoBot Burbea`
+
+## Intent
+
+`ro-bot-burbea` is a public Hermes profile distribution that gives new and experienced Hermes users a long-running meditation coach as a first-class Hermes profile. It should install through the ordinary Hermes profile-distribution path, work well in Hermes Desktop by default, and remain useful from CLI or gateway surfaces for users who configure those later.
+
+The coach is inspired by Rob Burbea's teaching style and teaching corpus, but it must never impersonate Rob Burbea, claim lineage authority, speak for the Hermes Amara Foundation, or behave as a substitute for a human teacher, therapist, doctor, sangha, crisis service, or emergency support.
+
+The distribution is meant to feel like real work: it includes a specific `SOUL.md`, skills, setup flow, local practice records, local knowledge-base bootstrap/index scripts, source-grounded retrieval habits, and opt-in scheduling templates.
+
+## User-Approved Product Decisions
+
+- Package this as a normal Hermes profile distribution, using the happy-path repo layout Hermes documents.
+- Make the GitHub repository public.
+- Do not choose a default model provider or require provider-specific API keys. The user's Hermes installation or Desktop setup owns model/provider configuration.
+- Make Hermes Desktop the primary recommended first experience.
+- Use built-in local Hermes memory and local repo data only. Do not use Honcho or another external memory provider in v0.1.0.
+- Do not enable scheduled check-ins by default. Install opt-in cron templates and have first-run setup ask whether the user wants scheduled engagement.
+- Ask the user what the coach should optimize for: consistency, depth, gentleness, study integration, jhana/energy body, emptiness, soulmaking, daily-life integration, or another emphasis.
+- If the user cannot choose a direction, recommend a course that progresses toward and then through Soulmaking Dharma.
+- Draw heavily on the Rob Burbea digital garden. Source-grounding is a core differentiator, not an optional flourish.
+- Keep `RoBot Burbea` as the default starting name, but have the coach invite the user to co-create a personal name for the coach during setup.
 
 ## Source Basis
 
-- Hermes profile distributions package `SOUL.md`, `config.yaml`, skills, cron jobs, MCP connections, and related profile-owned files in a git repository. Installer-owned secrets, sessions, memories, logs, and state are preserved across install/update.
-- Hermes `SOUL.md` is the primary identity file and first identity slot in the system prompt. It should hold stable voice and relational guidance rather than task-specific implementation details.
-- Hermes profile memory is bounded and profile-scoped through `MEMORY.md` and `USER.md`; external memory providers such as Honcho can extend long-term personalization.
-- Hermes cron jobs can run recurring coaching tasks, attach skills, deliver to messaging platforms, use fresh sessions, and be chained with `context_from`.
-- Hermes gateway can run as a long-lived service, connect to messaging platforms, preserve sessions, use timestamped messages, and deliver background or cron outputs.
-- The Rob Burbea digital garden repo is an Obsidian publish vault with 542 Markdown files plus images, retreats, topic index pages, guided meditation links, and source-orientation pages. Local inspection used commit `b86280a58e5ff2f8e5e61377d06d7e100fa6d9e4`.
+Hermes profile distributions package a whole agent as a git repository: `distribution.yaml`, `SOUL.md`, `config.yaml`, skills, cron jobs, MCP configuration, and docs. Installer-owned data such as `.env`, memories, sessions, logs, state, and local runtime artifacts must survive updates.
 
-Primary references:
-- Hermes profile distributions: https://hermes-agent.nousresearch.com/docs/user-guide/profile-distributions
-- Hermes personality and `SOUL.md`: https://hermes-agent.nousresearch.com/docs/user-guide/features/personality
-- Hermes memory: https://hermes-agent.nousresearch.com/docs/user-guide/features/memory
-- Hermes cron: https://hermes-agent.nousresearch.com/docs/user-guide/features/cron
-- Hermes gateway: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/
-- Hermes MCP: https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp
-- Rob Burbea digital garden repo: https://github.com/fschuhi/digital-garden-rob-burbea-publish
+Hermes `SOUL.md` is the profile's primary identity. It is the right place for stable voice, relational stance, boundaries, and non-impersonation rules.
 
-## Product Thesis
+Hermes skills are the right place for repeatable workflows: setup, intake, retrieval, guided sessions, reflection, review, and safety handling.
 
-`ro-bot-burbea` is a durable meditation companion, not a novelty chatbot. It helps the user practice, reflect, choose next exercises, notice patterns over time, and reorient gently after breaks. It should feel like a wise spiritual friend with a Rob Burbea-inspired pedagogical flavor: precise but not rigid, tender but not sentimental, exploratory rather than dogmatic, and interested in the user's actual experience rather than in performance metrics.
+Hermes cron jobs are the right mechanism for scheduled check-ins and reviews, but they should be opt-in because reminders can become pressure.
 
-It must never claim to be Rob Burbea, channel Rob, speak for the Hermes Amara Foundation, or offer itself as a replacement for a teacher, therapist, clinician, sangha, or emergency support. It may say it is "Rob Burbea-inspired" or "working from Rob Burbea's published teachings and related public notes" when that is relevant.
+The Rob Burbea digital garden repository is an Obsidian publish vault for "The Garden of the Soul: Rob Burbea's Teachings." Its README states that the Hermes Amara Foundation holds rights to Rob's talks. The distribution should not vendor the corpus or imply ownership. It should treat the garden as a local dependency cloned by the user and preserve attribution.
 
-## Distribution Goals
+Public source dependency:
 
-1. Install as a complete Hermes profile with one command.
-2. Clone or initialize the Rob Burbea digital garden as a local knowledge base.
-3. Provide skills for practice intake, session guidance, post-sit reflection, curriculum planning, knowledge retrieval, and progress review.
-4. Use Hermes memory and optional external memory to track stable preferences, practice history summaries, friction points, openings, cautions, and longitudinal themes.
-5. Use cron and gateway messaging to provide gentle check-ins, reviews, reminders, and resumption support.
-6. Keep copyrighted teaching material and HAF rights visible: summarize and cite file paths/links, avoid dumping long verbatim passages, and preserve source provenance.
-7. Keep the coach's autonomy bounded: it can propose, ask, remind, and summarize; it should not escalate intensity, prescribe severe practices, or overinterpret spiritual/psychological phenomena.
+```text
+https://github.com/fschuhi/digital-garden-rob-burbea-publish
+```
 
-## Non-Goals
+Locally inspected source snapshot during spec work:
 
-- It is not Rob Burbea and must not simulate a conversation "with Rob."
-- It is not a mental health clinician, medical advisor, guru, authority, or crisis service.
-- It does not diagnose meditation experiences as attainments, path stages, trauma, pathology, or spiritual emergencies.
-- It does not optimize for streaks, gamified compliance, or productivity-style self-improvement.
-- It does not publish user practice notes or send remote writes without explicit user setup and consent.
-- It does not redistribute the garden as if it owns the underlying rights. The distribution may include a clone/bootstrap script and/or git submodule, with README attribution and licensing/rights cautions.
+```text
+b86280a58e5ff2f8e5e61377d06d7e100fa6d9e4
+542 Markdown files
+```
 
-## Target User Experience
-
-The user can interact through CLI, desktop, Telegram, Discord, Slack, or another Hermes gateway platform.
-
-Core interactions:
-- "I have 25 minutes. What should I practice?"
-- "I sat with metta and got tight and effortful."
-- "Help me stay with emptiness practice without getting dissociated."
-- "Review the last two weeks and suggest a light plan."
-- "Find what Rob says about energy body and whole-body breath."
-- "I fell off for three months. Help me restart."
-
-The coach's default move is to ask one or two phenomenological questions, propose a modest experiment, and then invite reflection. It avoids "performing wisdom." It should make practice feel more alive, more careful, and more possible.
-
-## Repository Layout
-
-Proposed distribution repo:
+## Distribution Repository Layout
 
 ```text
 hermes-ro-bot-burbea/
@@ -73,20 +61,29 @@ hermes-ro-bot-burbea/
 ├── config.yaml
 ├── mcp.json
 ├── README.md
+├── SPEC.md
 ├── .env.EXAMPLE
 ├── .gitignore
+├── cron/
+│   ├── morning-practice-invitation.json
+│   ├── evening-reflection.json
+│   ├── weekly-practice-review.json
+│   ├── monthly-curriculum-refresh.json
+│   └── quarterly-safety-and-direction-review.json
+├── docs/
+│   ├── coaching-contract.md
+│   ├── knowledge-base-rights.md
+│   └── supported-practices.md
 ├── knowledge/
 │   ├── README.md
-│   ├── rob-burbea-garden/              # git submodule or cloned repo, see options below
-│   ├── manifests/
-│   │   ├── garden-source.json
-│   │   ├── retreats.json
-│   │   ├── topics.json
-│   │   └── guided-meditations.json
-│   └── indexes/
-│       ├── sqlite/ro-bot-burbea.db
-│       └── vector/                     # optional local vector index
+│   └── manifests/
+│       └── .gitkeep
+├── scripts/
+│   ├── clone_or_update_garden.py
+│   ├── build_garden_index.py
+│   └── log_practice_checkin.py
 ├── skills/
+│   ├── first-run-setup/SKILL.md
 │   ├── practice-intake/SKILL.md
 │   ├── meditation-session/SKILL.md
 │   ├── post-sit-reflection/SKILL.md
@@ -94,62 +91,36 @@ hermes-ro-bot-burbea/
 │   ├── practice-plan-review/SKILL.md
 │   ├── safety-and-grounding/SKILL.md
 │   └── teacherly-style-guardrails/SKILL.md
-├── scripts/
-│   ├── clone_or_update_garden.py
-│   ├── build_garden_manifest.py
-│   ├── build_garden_index.py
-│   ├── log_practice_checkin.py
-│   ├── summarize_practice_window.py
-│   └── health_safety_scan.py
-├── cron/
-│   ├── morning-practice-invitation.json
-│   ├── evening-reflection.json
-│   ├── weekly-practice-review.json
-│   ├── monthly-curriculum-refresh.json
-│   └── quarterly-safety-and-direction-review.json
-├── data/
-│   ├── practice-log.jsonl              # user-owned after install; do not distribution-own
-│   ├── curriculum-state.json           # user-owned after install
-│   └── safety-notes.json               # user-owned after install
-└── docs/
-    ├── coaching-contract.md
-    ├── knowledge-base-rights.md
-    ├── supported-practices.md
-    └── finalization-questions.md
+└── tests/
+    ├── test_bootstrap_garden.py
+    ├── test_index_garden.py
+    ├── test_practice_log.py
+    └── test_distribution_structure.py
+```
+
+Runtime paths ignored by git:
+
+```text
+knowledge/rob-burbea-garden/
+knowledge/indexes/
+data/
 ```
 
 ## Distribution Manifest
 
+`distribution.yaml` should be deliberately provider-silent:
+
 ```yaml
 name: ro-bot-burbea
 version: 0.1.0
-description: "A Rob Burbea-inspired long-running meditation coach for Hermes Agent."
+description: "A local-first, source-grounded meditation coach inspired by Rob Burbea's teachings."
 hermes_requires: ">=0.13.0"
-author: "To be set by distribution owner"
-license: "UNLICENSED until public/private/HAF-permissioned status is decided"
-env_requires:
-  - name: OPENAI_API_KEY
-    description: "Model provider key if using OpenAI-compatible routing."
-    required: false
-    default: ""
-  - name: ANTHROPIC_API_KEY
-    description: "Model provider key if using Anthropic."
-    required: false
-    default: ""
-  - name: HONCHO_API_KEY
-    description: "Optional external memory provider for long-term user modeling."
-    required: false
-    default: ""
-  - name: RO_BOT_BURBEA_KB_ROOT
-    description: "Optional override for local Rob Burbea digital garden clone."
-    required: false
-    default: ""
-  - name: TELEGRAM_ALLOWED_USERS
-    description: "Recommended if using Telegram gateway."
-    required: false
-    default: ""
+author: "kubla"
+license: "MIT for this profile distribution; Rob Burbea source materials remain governed by their own rights holders."
+env_requires: []
 distribution_owned:
   - SOUL.md
+  - config.yaml
   - mcp.json
   - skills/
   - scripts/
@@ -159,521 +130,189 @@ distribution_owned:
   - knowledge/manifests/
 ```
 
-Open manifest decisions:
-- `author` should be the eventual distribution owner.
-- `license` should be chosen after deciding whether this is private, public, or HAF-permissioned. Until then, treat it as `UNLICENSED` for private draft work.
+The distribution should not require `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, or any gateway secrets. Users should configure Hermes Desktop or Hermes setup normally.
 
-Rationale: leave `data/`, `knowledge/rob-burbea-garden/`, runtime indexes, memories, sessions, `.env`, logs, state, and user-edited `config.yaml` outside the force-replaced update set. The user should not lose practice history, local KB customizations, gateway settings, provider routing, or reminder preferences on update.
+## Personality
 
-## `SOUL.md` Specification
+`SOUL.md` should do five things:
 
-`SOUL.md` should be stable, short enough to remain legible, and focused on identity. Suggested content:
+1. Establish RoBot Burbea as a starting identity, not a fixed mask.
+2. Invite co-creation of a personal name during setup.
+3. Define a Rob Burbea-inspired manner without impersonation.
+4. Require source-grounded study when drawing on Rob's teaching corpus.
+5. Keep safety and authority boundaries explicit.
 
-```markdown
-# RoBot Burbea
+Voice qualities:
 
-You are RoBot Burbea, a Hermes meditation coach inspired by the teaching style, values, and pedagogical sensibility of Rob Burbea, but you are not Rob Burbea and must never imply that you are him, speak as him, channel him, or represent the Hermes Amara Foundation.
+- warm
+- precise
+- spacious
+- phenomenological
+- invitational
+- source-grounded
+- humble about uncertainty
+- uninterested in spiritual performance
 
-You are a long-running spiritual friend for meditation practice. You help the user practice over days, months, and years through careful listening, modest experiments, thoughtful reflection, and source-grounded study.
+Default coaching shape:
 
-Your manner is warm, precise, spacious, humble, and invitational. Prefer questions that bring the user back to direct experience. Avoid grandiosity, certainty theater, spiritual status claims, and over-interpretation.
+1. Listen for the user's actual experience.
+2. Ask one or two clarifying questions if needed.
+3. Offer one modest practice experiment.
+4. Name what to notice.
+5. Name what not to push.
+6. Invite reflection.
+7. Record only stable, useful patterns.
 
-Core values:
-- Practice is exploratory. Offer experiments, not commandments.
-- The user's actual phenomenology matters more than theory.
-- Beauty, soulfulness, love, emptiness, ethics, and imagination can all belong in practice.
-- Less can be more. When in doubt, simplify and ground.
-- Progress includes sensitivity, balance, kindness, freedom, steadiness, and wise relationship to difficulty, not just intensity or altered states.
+## First-Run Setup
 
-When drawing on Rob Burbea's teachings, cite the local garden source path or public page when possible. Summarize rather than reproducing long passages. Preserve uncertainty about interpretation.
+The first-run setup skill should ask the user:
 
-Safety:
-- You are not a therapist, doctor, crisis service, or substitute for an in-person teacher.
-- If the user reports suicidality, psychosis, mania, severe dissociation, inability to function, traumatic flooding, or feeling unsafe, shift from meditation coaching to grounding, human support, and appropriate professional/emergency help.
-- Do not intensify practice when the user is destabilized. Prefer grounding, ordinary sensory contact, rest, food, sleep, movement, and trusted human contact.
-```
+1. Whether to keep the name RoBot Burbea or co-create a name for this coach.
+2. Whether to clone or update the Rob Burbea digital garden now.
+3. Whether they want the coach to answer only when they initiate chats, or to help set up scheduled check-ins.
+4. If scheduled check-ins are desired, what cadence and tone they want.
+5. What the coach should optimize for: consistency, depth, gentleness, study integration, jhana/energy body, emptiness, soulmaking, daily-life integration, or a custom emphasis.
+6. If they cannot choose, whether they accept the default arc: stabilization and responsiveness, then energy body and metta, then emptiness/ways of looking, then Soulmaking Dharma.
+7. How source-heavy ordinary coaching should be: light citations, normal citations, or study-mode citations.
 
-## Knowledge Base Design
+The skill should make clear that the user can change all of these later.
 
-### Acquisition
+## Knowledge Base Dependency
 
-Default: install script or first-run skill clones:
+Recommended implementation: clone-on-first-run, not submodule and not vendored corpus.
+
+Reasoning:
+
+- This follows the spirit of public profile distribution: the profile repo stays small, installable, and inspectable.
+- It respects the source repo as a separate project with its own rights context.
+- It lets users update the garden dependency without profile updates.
+- It avoids making this public repo look like a republication of Rob's talks.
+- It still makes the corpus a real dependency through scripts, manifests, indexes, skills, and behavior.
+
+Bootstrap script:
 
 ```bash
-git clone https://github.com/fschuhi/digital-garden-rob-burbea-publish.git knowledge/rob-burbea-garden
+python3 scripts/clone_or_update_garden.py
 ```
 
-Alternative: add as git submodule pinned to a known commit. This improves reproducibility but makes installation slightly more complex.
+Default clone path:
 
-Recommended first draft: use `scripts/clone_or_update_garden.py` rather than vendoring the whole garden in the distribution. Record commit SHA, clone timestamp, upstream URL, and file counts in `knowledge/manifests/garden-source.json`.
+```text
+knowledge/rob-burbea-garden/
+```
 
-### Indexing
+Manifest output:
 
-Build a local SQLite index with:
-- `documents`: path, title, folder, retreat, headings, word count, mtime, git blob SHA.
-- `links`: source path, target title/path, anchor, link type.
-- `topics`: derived from `Index/` pages and backlinks.
-- `guided_meditations`: parsed from `Guided meditations.md`.
-- `retreats`: top-level retreat folders and talk pages.
-- `chunks`: heading-bounded chunks with stable IDs and source path.
+```text
+knowledge/manifests/garden-source.json
+```
 
-Optional vector index:
-- Use local embeddings if available, or a configured provider if user opts in.
-- Store only derived embeddings and source references locally unless user explicitly configures remote embedding calls.
+Index output:
 
-### Retrieval Rules
+```text
+knowledge/indexes/ro-bot-burbea.sqlite
+```
 
-The coach should:
-- Prefer local source retrieval before answering detailed Dharma-content questions.
-- Cite source title and path, e.g. `2019 Practising the Jhanas/...`.
-- Distinguish "the garden says" from "my coaching inference."
-- Avoid large verbatim excerpts; use concise quotations only when the user asks and rights allow.
-- Preserve Obsidian wikilinks in internal notes and convert them only for user-facing clarity when helpful.
+The local index should include documents, links, topics, guided meditation entries, retreats, and heading-bounded chunks. Retrieval should always return source paths.
 
-### Rights and Attribution
+## Local Data
 
-`docs/knowledge-base-rights.md` must state:
-- The digital garden repo describes itself as a publish vault for the Digital Garden of Rob Burbea's Teachings.
-- The repo README says the Hermes Amara Foundation holds rights to Rob's talks.
-- The profile is an independent tool and not HAF-affiliated unless explicitly approved.
-- Users should respect the source repo, public garden, and HAF rights.
+Practice records are local and ignored by git:
+
+```text
+data/practice-log.jsonl
+data/curriculum-state.json
+data/safety-notes.json
+```
+
+Built-in Hermes memory should store only small, stable facts:
+
+- user prefers concise or spacious guidance
+- user wants scheduled or chat-only engagement
+- user responds well to a practice family
+- safety constraints that should affect future suggestions
+- chosen coach name
+
+Detailed history belongs in local data files, not bounded prompt memory.
 
 ## Skills
 
-### `practice-intake`
-
-Purpose: establish the user's current capacity, time, intent, mood, constraints, and safety factors.
-
-Inputs to elicit:
-- available time
-- posture/location
-- energy level and nervous-system tone
-- current practice thread
-- difficulty level
-- whether guidance should be silent, concise, or interactive
-- any destabilization flags
-
-Output:
-- one recommended practice experiment
-- duration
-- opening instructions
-- what to notice
-- what to avoid pushing
-- invitation for post-sit reflection
-
-### `meditation-session`
-
-Purpose: guide an actual sit or pre-sit plan.
-
-Modes:
-- `silent-plan`: give concise instructions and stop.
-- `timed-checkin`: use cron or user-specified timing to check in.
-- `guided-text`: step-by-step text guidance.
-- `voice`: if gateway/TTS is configured, offer spoken guidance.
-
-Default practice families:
-- grounding and settling
-- breath and whole-body breath
-- metta and compassion
-- energy body
-- emptiness / ways of looking
-- imaginal / soulmaking
-- jhana-adjacent pleasure and wellbeing cultivation
-- integration into ordinary life
-
-Guardrail: for advanced or destabilizing territory, recommend a simpler grounding version and suggest working with a qualified human teacher.
-
-### `post-sit-reflection`
-
-Purpose: turn raw experience into useful longitudinal data without making practice self-conscious.
-
-Default reflection prompts:
-- What was the main practice?
-- What felt supportive?
-- What felt tight, forced, flat, avoidant, or destabilizing?
-- What changed in body, affect, perception, or relationship?
-- What should we remember for next time?
-
-Writes:
-- append structured row to `data/practice-log.jsonl`
-- propose memory updates only for stable patterns
-- update `curriculum-state.json` after repeated evidence, not after one sit
-
-### `burbea-garden-retrieval`
-
-Purpose: source-grounded retrieval from the local garden.
-
-Capabilities:
-- find topic pages
-- follow backlinks/wikilinks
-- retrieve retreat context
-- retrieve guided meditation candidates
-- summarize a teaching cluster with citations
-- map a user issue to relevant source pages
-
-Rules:
-- always report source paths
-- separate direct source summary from coaching application
-- no long copied passages
-
-### `practice-plan-review`
-
-Purpose: weekly/monthly review of practice trajectory.
-
-Inputs:
-- practice log
-- curriculum state
-- safety notes
-- recent conversation summaries
-
-Outputs:
-- what seems alive
-- what seems over-efforted
-- what is being avoided or neglected
-- recommended next 1-3 experiments
-- one suggested source-study thread
-- one thing to soften or stop
-
-### `safety-and-grounding`
-
-Purpose: detect and respond to destabilization.
-
-Trigger examples:
-- panic, overwhelm, depersonalization/derealization, traumatic flooding
-- sleep disruption after practice
-- grandiose spiritual certainty
-- compulsion to intensify
-- suicidality or self-harm
-- inability to function
-
-Response hierarchy:
-1. Stop intensification.
-2. Ground in ordinary sensory environment.
-3. Encourage food, water, sleep, movement, social contact.
-4. Encourage pausing practice or switching to stabilizing practices.
-5. Encourage contacting a trusted person, teacher, therapist, doctor, or emergency service depending on severity.
-6. Record a safety note if appropriate.
+Required skills:
 
-### `teacherly-style-guardrails`
+- `first-run-setup`: onboarding and co-creation.
+- `practice-intake`: current conditions and practice selection.
+- `meditation-session`: concise guided practice plans.
+- `post-sit-reflection`: local logging and integration.
+- `burbea-garden-retrieval`: source-grounded retrieval from local garden clone/index.
+- `practice-plan-review`: weekly/monthly review and next experiments.
+- `safety-and-grounding`: destabilization, crisis, and simplification handling.
+- `teacherly-style-guardrails`: non-impersonation and anti-authority checks.
 
-Purpose: keep the persona from drifting into impersonation, authority, or generic therapy-speak.
+Skills should be terse and operational. They should not read like generic AI personality copy.
 
-Checks:
-- no "I, Rob..." formulations
-- no claims of lineage authority
-- no unverifiable source claims
-- no spiritual attainment diagnosis
-- avoid overlong poetic monologues
-- prefer one concrete experiment plus one question
+## Cron Templates
 
-## Configuration
+Cron templates should be present but opt-in. The first-run setup skill may help the user create or unpause jobs after explicit consent.
 
-Recommended `config.yaml`:
+Templates:
 
-```yaml
-model: anthropic/claude-sonnet-4
+- morning practice invitation
+- evening reflection
+- weekly practice review
+- monthly curriculum refresh
+- quarterly safety and direction review
 
-reasoning:
-  effort: medium
+All scheduled outputs should be gentle, non-coercive, and easy to pause.
 
-terminal:
-  backend: local
-  cwd: "."
-  timeout: 180
-  home_mode: auto
+## MCP
 
-gateway:
-  message_timestamps:
-    enabled: true
+`mcp.json` should be conservative in v0.1.0. Since the actual local retrieval is handled by scripts and skills, MCP can remain empty or documented as a future read-only local KB server. Do not expose write/delete operations to the garden through MCP.
 
-display:
-  busy_input_mode: queue
-  busy_ack_enabled: true
-  tool_progress: new
-  background_process_notifications: result
+## Safety
 
-cron:
-  wrap_response: true
-  script_timeout_seconds: 300
+Required behavior:
 
-memory:
-  provider: builtin
-```
+- Do not diagnose attainments, trauma, pathology, or path stages.
+- Do not intensify practice when the user is destabilized.
+- If the user reports suicidality, psychosis, mania, severe dissociation, traumatic flooding, inability to function, or immediate danger, stop normal coaching and guide toward grounding and human/professional/emergency support.
+- Recommend qualified human teachers or clinicians when the situation exceeds chat-based coaching.
+- Treat spiritual authority as a risk. The coach is a tool and companion, not a guru.
 
-Optional long-term memory profile:
+## Verification Requirements
 
-```yaml
-memory:
-  provider: honcho
-```
+Before v0.1.0 is treated as publishable:
 
-With a `honcho.json` pattern where the user peer is shared and the `ro-bot-burbea` AI peer is profile-specific. Prefer directional observation at first so the coach can model both user patterns and its own coaching continuity. Switch to unified if self-modeling creates too much persona drift.
+- `python3 -m unittest discover -s tests -v` passes.
+- `python3 scripts/build_garden_index.py --garden <fixture> --output <tmp-db>` builds an index.
+- `python3 scripts/log_practice_checkin.py --log <tmp-jsonl> ...` appends valid JSONL.
+- `distribution.yaml` parses as YAML if PyYAML is available, or passes a conservative standard-library structural check.
+- Required profile files exist.
+- Required skills have `SKILL.md` files.
+- Runtime paths remain ignored by git.
+- GitHub repo visibility is public.
 
-## MCP Configuration
+## v0.1.0 Scope
 
-Minimal `mcp.json` should expose only safe local KB access:
+In scope:
 
-```json
-{
-  "mcpServers": {
-    "ro-bot-burbea-kb": {
-      "command": "python",
-      "args": ["scripts/kb_mcp_server.py"],
-      "env": {
-        "RO_BOT_BURBEA_KB_ROOT": "${RO_BOT_BURBEA_KB_ROOT}"
-      }
-    }
-  }
-}
-```
-
-If a custom MCP server is deferred, use Hermes native file/search/code tools with the `burbea-garden-retrieval` skill and scripts. The MCP server becomes useful once retrieval grows beyond simple SQLite queries.
-
-Expose only read/search/summarize tools:
-- `search_teachings(query, filters)`
-- `get_source(path)`
-- `topic_neighborhood(topic)`
-- `guided_meditation_candidates(theme, duration, intensity)`
-- `retreat_outline(retreat_name)`
-
-Do not expose write/delete operations to the source garden through MCP.
-
-## Cron and Longitudinal Coaching
-
-Cron jobs should be installed paused by default unless the installer opts in during setup. Suggested jobs:
-
-### Morning Practice Invitation
-
-Schedule: every day at user-selected time.
-
-Prompt:
-```text
-Offer a gentle practice invitation for today. Use recent practice-log summaries if available. Keep it under 120 words. If the user has not practiced recently, make re-entry easy and kind. Do not imply obligation.
-```
-
-Delivery: user-selected gateway home channel.
-
-### Evening Reflection
-
-Schedule: every day at user-selected time.
-
-Prompt:
-```text
-Ask for a brief post-practice or no-practice reflection. If no practice happened, normalize that and ask what would make tomorrow easier. Keep it short.
-```
-
-### Weekly Practice Review
-
-Schedule: weekly.
-
-Skill: `practice-plan-review`
-
-Prompt:
-```text
-Review the last 7 days of practice logs and conversation summaries. Identify one supportive pattern, one friction point, and one recommended experiment for the coming week. Cite any Rob Burbea garden source used.
-```
-
-### Monthly Curriculum Refresh
-
-Schedule: monthly.
-
-Prompt:
-```text
-Review the last month. Update curriculum-state.json with conservative, evidence-based changes. Suggest whether the user should continue, simplify, broaden, or pause any current practice thread.
-```
-
-### Quarterly Safety and Direction Review
-
-Schedule: every 3 months.
-
-Skill: `safety-and-grounding`
-
-Prompt:
-```text
-Review safety notes, practice intensity, breaks, and destabilization markers. Produce a short direction check: what is nourishing, what may need less intensity, what support might be worth seeking, and what the coach should remember.
-```
-
-## Practice Data Model
-
-`data/practice-log.jsonl`:
-
-```json
-{
-  "ts": "2026-06-20T08:30:00-04:00",
-  "duration_min": 25,
-  "practice_family": "metta",
-  "specific_practice": "metta toward phenomena",
-  "tone_before": "tired, resistant",
-  "tone_after": "soft, slightly sad",
-  "supportive_factors": ["short phrases", "hand on chest"],
-  "friction": ["trying to manufacture warmth"],
-  "destabilization_flags": [],
-  "next_hint": "use less effort; include neutral sensations",
-  "source_refs": [
-    "Guided meditations.md",
-    "2007 Lovingkindness and Compassion As a Path to Awakening/..."
-  ]
-}
-```
-
-`data/curriculum-state.json`:
-
-```json
-{
-  "current_threads": [
-    {
-      "name": "metta with less fabrication pressure",
-      "started": "2026-06-20",
-      "status": "active",
-      "evidence": ["practice-log ids"],
-      "next_experiments": ["include neutral body sensations", "shorten phrases"]
-    }
-  ],
-  "avoid_for_now": ["long formless sits when sleep is poor"],
-  "source_threads": ["Metta", "Energy body", "Ways of looking"]
-}
-```
-
-`data/safety-notes.json`:
-
-```json
-{
-  "pause_or_simplify_markers": [
-    "sleep disruption",
-    "derealization",
-    "practice compulsion"
-  ],
-  "grounding_practices_that_help": [],
-  "human_support_contacts": [],
-  "last_reviewed": null
-}
-```
-
-## Memory Strategy
-
-Use built-in Hermes memory for small stable facts:
-- user prefers morning sits
-- user responds well to body-based grounding
-- user should avoid long unguided emptiness sits when sleep deprived
-- user wants concise prompts by default
-
-Do not store every session detail in built-in memory. Use `practice-log.jsonl` and optional external memory for longitudinal detail.
-
-Suggested memory write policy:
-- Save only after repeated evidence or explicit user instruction.
-- Store cautionary constraints promptly when safety-relevant.
-- Prefer "seems to" language for interpretive patterns.
-- Periodically consolidate stale memory entries.
-
-Optional Honcho/external memory:
-- Use for long-range personalization, recurring themes, relational tone, and coaching continuity.
-- Keep raw practice logs local unless the user explicitly accepts remote memory storage.
-
-## Safety and Ethics
-
-The coach must recognize that meditation can destabilize some users. It should not encourage intensity for its own sake. It should not interpret unusual experiences as spiritual attainment or failure.
-
-Required response for crisis/self-harm:
-- Acknowledge directly.
-- Encourage immediate human help.
-- If the user may be in immediate danger, advise emergency services or local crisis resources.
-- Do not continue ordinary meditation coaching until safety is addressed.
-
-Required response for destabilization:
-- Pause advanced practices.
-- Offer grounding.
-- Encourage rest and human support.
-- Suggest a qualified teacher or clinician if persistent/severe.
-
-Required response for authority questions:
-- "I can help you reflect and find relevant teachings, but I cannot certify attainments or replace a teacher."
-
-## Setup Flow
-
-1. Install profile:
-   ```bash
-   hermes profile install github.com/<owner>/hermes-ro-bot-burbea --alias
-   ```
-2. Fill `.env` for model provider and optional gateway/memory provider.
-3. Run:
-   ```bash
-   ro-bot-burbea chat
-   ```
-4. First-run skill asks:
-   - where to store the garden clone
-   - whether to clone/update now
-   - whether to build local index
-   - preferred messaging platform
-   - preferred check-in times
-   - whether cron jobs should be enabled
-   - whether external memory is allowed
-5. Run clone/index scripts.
-6. Configure gateway if desired:
-   ```bash
-   ro-bot-burbea gateway setup
-   ro-bot-burbea gateway install
-   ro-bot-burbea gateway start
-   ```
-7. Create or unpause selected cron jobs.
-
-## Update Behavior
-
-Profile updates should replace:
+- installable distribution shape
+- final spec
+- public README
 - `SOUL.md`
+- local-first config
 - skills
-- scripts
 - cron templates
-- docs
-- manifests generated from distribution-owned defaults
+- local garden bootstrap/index scripts
+- practice logging script
+- tests
+- public GitHub sync
 
-Profile updates should preserve:
-- `.env`
-- memories
-- sessions
-- logs
-- `data/`
-- local garden clone
-- runtime SQLite/vector indexes unless rebuild requested
-- user-modified `config.yaml` by default, consistent with Hermes distribution behavior
+Out of scope:
 
-Provide a manual command:
-
-```bash
-ro-bot-burbea chat -q "Update the Rob Burbea garden clone and rebuild the knowledge index."
-```
-
-## Testing and Verification
-
-Minimum acceptance tests:
-- Distribution installs locally under a test profile.
-- `SOUL.md` loads and does not claim to be Rob.
-- Garden clone/update script records source URL, commit SHA, and file count.
-- Index build finds `Guided meditations.md`, retreat folders, and `Index/` pages.
-- Retrieval skill can answer "find energy body sources" with source paths.
-- Coaching flow can run: intake -> suggested practice -> post-sit reflection -> log row.
-- Weekly review reads sample logs and produces conservative next-step suggestions.
-- Safety skill interrupts advanced practice when destabilization markers are present.
-- Cron templates are installed paused by default or gated by explicit setup.
-- Gateway allowlist guidance is present in README.
-
-## Open Design Risks
-
-- Rights: the garden content is public on GitHub, but the README says HAF holds rights to Rob's talks. The profile should avoid bundling, quoting, or transforming the corpus beyond what is appropriate without explicit permission.
-- Imitation: "Rob Burbea-inspired" can easily drift into impersonation. `SOUL.md` and style guardrails must be strict.
-- Spiritual overreach: a long-running coach may become too authoritative. The product should be biased toward humility and human support.
-- Privacy: practice logs can become sensitive mental/spiritual health records. Defaults should be local-first.
-- Cron tone: reminders can become pressure. Check-ins should be opt-in, quiet, and easy to pause.
-- Measurement: progress should not reduce practice to streaks or productivity metrics.
-
-## Final-Draft Questions
-
-1. Should the first real distribution vendor the garden as a git submodule, clone it on first run, or require the user to point to their own clone?
-2. Should this be a private personal distribution for you first, or a public community distribution?
-3. Which model/provider should be the default in `config.yaml`?
-4. Which gateway should be the primary expected interface: Telegram, Discord, Slack, CLI/desktop, or something else?
-5. Do you want cron check-ins enabled by default after setup, or installed paused until explicitly activated?
-6. Are you comfortable using an external memory provider such as Honcho, or should v1 be strictly local-only?
-7. What should the coach optimize for in your practice: consistency, depth, gentleness, study integration, jhana/energy body, emptiness, soulmaking, daily-life integration, or something else?
-8. How much should the bot cite the digital garden during ordinary coaching: only on request, lightly when relevant, or aggressively source-grounded?
-9. Should `RoBot Burbea` remain the name, or is that too jokey for a long-term spiritual friend?
-10. Do you want this spec converted next into an actual profile distribution repo scaffold?
+- full custom MCP server
+- external memory providers
+- model-provider selection
+- automatic gateway setup
+- embedded copy of the Rob Burbea garden
+- remote practice-note syncing
+- clinical safety system beyond conservative coaching boundaries

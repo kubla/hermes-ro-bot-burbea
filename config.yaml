@@ -1,0 +1,19 @@
+# RoBot Burbea intentionally does not choose a model provider.
+# Configure Hermes Desktop or `hermes setup` normally, then install this profile.
+
+memory:
+  provider: builtin
+
+gateway:
+  message_timestamps:
+    enabled: true
+
+display:
+  busy_input_mode: queue
+  busy_ack_enabled: true
+  tool_progress: new
+  background_process_notifications: result
+
+cron:
+  wrap_response: true
+  script_timeout_seconds: 300

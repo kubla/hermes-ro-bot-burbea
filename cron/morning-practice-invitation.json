@@ -1,0 +1,11 @@
+{
+  "name": "morning-practice-invitation",
+  "paused": true,
+  "schedule": "0 8 * * *",
+  "deliver": "local",
+  "skills": [
+    "practice-intake",
+    "teacherly-style-guardrails"
+  ],
+  "prompt": "Offer a gentle practice invitation for today. Use local practice history if available. Keep it under 120 words. Do not imply obligation. If no clear direction is known, suggest one small step on the gradual arc toward Soulmaking Dharma."
+}

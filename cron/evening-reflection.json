@@ -1,0 +1,11 @@
+{
+  "name": "evening-reflection",
+  "paused": true,
+  "schedule": "0 20 * * *",
+  "deliver": "local",
+  "skills": [
+    "post-sit-reflection",
+    "teacherly-style-guardrails"
+  ],
+  "prompt": "Ask for a brief post-practice or no-practice reflection. If no practice happened, normalize that and ask what would make tomorrow easier. Keep it short and non-coercive."
+}

@@ -1,0 +1,11 @@
+{
+  "name": "quarterly-safety-and-direction-review",
+  "paused": true,
+  "schedule": "0 9 1 1,4,7,10 *",
+  "deliver": "local",
+  "skills": [
+    "safety-and-grounding",
+    "practice-plan-review"
+  ],
+  "prompt": "Review safety notes, practice intensity, breaks, and destabilization markers. Produce a short direction check: what is nourishing, what may need less intensity, what support might be worth seeking, and what the coach should remember."
+}
