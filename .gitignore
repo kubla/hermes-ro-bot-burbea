@@ -1,0 +1,13 @@
+.DS_Store
+.env
+auth.json
+memories/
+sessions/
+state.db*
+logs/
+workspace/
+*_cache/
+local/
+data/
+knowledge/rob-burbea-garden/
+knowledge/indexes/
